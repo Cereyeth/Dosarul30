@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dosarul 30 | Capitolul III</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Special+Elite&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --paper:#f2e7cf;
+      --paper2:#eadbbd;
+      --ink:#241a12;
+      --muted:#5a4a3a;
+      --stamp:#7a1f1f;
+      --line:rgba(36,26,18,.18);
+      --shadow: 0 18px 40px rgba(0,0,0,.22);
+      --radius: 16px;
+
+      --serif: "IM Fell English", serif;
+      --type: "Special Elite", ui-monospace, monospace;
+    }
+    *{ box-sizing:border-box; }
+
+    body{
+      margin:0;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      color:var(--ink);
+      background:
+        radial-gradient(900px 600px at 20% 10%, rgba(90,74,58,.12), transparent 60%),
+        radial-gradient(900px 600px at 80% 30%, rgba(122,31,31,.10), transparent 55%),
+        linear-gradient(180deg, #2b221b 0%, #1f1813 60%, #15100c 100%);
+    }
+
+    .wrap{ width:100%; max-width:560px; }
+
+    .paper{
+      position:relative;
+      background:
+        radial-gradient(1200px 700px at 20% 0%, rgba(255,255,255,.35), transparent 60%),
+        radial-gradient(900px 600px at 90% 20%, rgba(90,74,58,.14), transparent 55%),
+        linear-gradient(180deg, var(--paper) 0%, var(--paper2) 100%);
+      border: 1px solid rgba(36,26,18,.25);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    .paper::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      background:
+        radial-gradient(90% 70% at 10% 20%, rgba(0,0,0,.08), transparent 55%),
+        radial-gradient(70% 60% at 90% 30%, rgba(0,0,0,.06), transparent 60%),
+        radial-gradient(80% 70% at 40% 110%, rgba(0,0,0,.07), transparent 55%);
+      mix-blend-mode:multiply;
+    }
+
+    .fold{
+      position:absolute;
+      left:50%;
+      top:-20px;
+      width:1px;
+      height: calc(100% + 40px);
+      background: rgba(36,26,18,.10);
+      transform: translateX(-50%);
+      filter: blur(.2px);
+      opacity:.75;
+      pointer-events:none;
+    }
+
+    header{
+      padding:18px 18px 10px;
+      border-bottom: 1px dashed rgba(36,26,18,.25);
+    }
+
+    .toprow{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+
+    .tag{
+      font-family: var(--type);
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid rgba(36,26,18,.20);
+      background: rgba(255,255,255,.25);
+      padding:8px 10px;
+      border-radius: 999px;
+    }
+
+    .stamp{
+      font-family: var(--type);
+      color: var(--stamp);
+      border: 2px solid rgba(122,31,31,.65);
+      padding:8px 10px;
+      border-radius: 10px;
+      transform: rotate(-6deg);
+      letter-spacing:.6px;
+      text-transform: uppercase;
+      background: rgba(255,255,255,.15);
+      box-shadow: 0 8px 20px rgba(122,31,31,.12);
+      user-select:none;
+    }
+
+    h1{
+      margin:12px 0 6px;
+      font-family: "IM Fell English", serif;
+      font-size: 26px;
+      letter-spacing:.2px;
+    }
+
+    .subtitle{
+      margin:0;
+      font-family: "IM Fell English", serif;
+      font-size: 15px;
+      color: var(--muted);
+      line-height:1.55;
+    }
+
+    .content{
+      padding:16px 18px 18px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+
+    .note{
+      border-left: 4px solid rgba(36,26,18,.20);
+      padding:12px 12px;
+      background: rgba(255,255,255,.25);
+      border-radius: 12px;
+      line-height:1.7;
+      font-family: "IM Fell English", serif;
+      font-size: 16px;
+    }
+
+    .typebox{
+      border: 1px solid rgba(36,26,18,.25);
+      background: rgba(255,255,255,.22);
+      border-radius: 14px;
+      padding:14px 14px;
+    }
+
+    .label{
+      font-family: "Special Elite", ui-monospace, monospace;
+      font-size: 12px;
+      color: var(--muted);
+      margin:0 0 8px;
+      letter-spacing:.4px;
+      text-transform: uppercase;
+    }
+
+    .big{
+      margin:0;
+      font-family: "Special Elite", ui-monospace, monospace;
+      font-size: 15px;
+      line-height:1.6;
+      color: var(--ink);
+    }
+
+    .divider{
+      height:1px;
+      background: rgba(36,26,18,.14);
+      margin:10px 0;
+    }
+
+    .btn{
+      appearance:none;
+      border: 1px solid rgba(36,26,18,.35);
+      background: linear-gradient(180deg, rgba(255,255,255,.35), rgba(255,255,255,.18));
+      color: var(--ink);
+      width:100%;
+      padding:14px 14px;
+      border-radius: 14px;
+      font-family: "Special Elite", ui-monospace, monospace;
+      font-weight: 700;
+      cursor:pointer;
+      box-shadow: 0 10px 22px rgba(0,0,0,.10);
+      transition: transform .08s ease, box-shadow .08s ease;
+    }
+    .btn:active{ transform: scale(.99); box-shadow: 0 8px 18px rgba(0,0,0,.10); }
+    .btn[disabled]{ opacity:.75; cursor:default; }
+
+    .hint{
+      text-align:center;
+      font-family: "Special Elite", ui-monospace, monospace;
+      font-size: 12px;
+      color: rgba(90,74,58,.9);
+      margin: 6px 0 0;
+    }
+
+    .hidden{ display:none; }
+
+    footer{
+      padding:12px 18px 16px;
+      border-top: 1px dashed rgba(36,26,18,.25);
+      font-family: "Special Elite", ui-monospace, monospace;
+      font-size: 11px;
+      color: rgba(90,74,58,.95);
+      text-align:center;
+      background: rgba(255,255,255,.12);
+    }
+
+    .inkblot{
+      position:absolute;
+      width:160px; height:160px;
+      left:-60px; bottom:-70px;
+      background: radial-gradient(circle at 45% 45%, rgba(36,26,18,.16), transparent 62%);
+      filter: blur(.2px);
+      opacity:.9;
+      pointer-events:none;
+    }
+
+    /* input-uri stil dosar */
+    input{
+      width:100%;
+      padding:12px;
+      border-radius:12px;
+      border:1px solid rgba(36,26,18,.25);
+      background: rgba(255,255,255,.25);
+      font-family: "Special Elite", ui-monospace, monospace;
+      font-size: 14px;
+      color: var(--ink);
+      outline:none;
+    }
+    input::placeholder{ color: rgba(90,74,58,.65); }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+    <section class="paper">
+      <div class="fold" aria-hidden="true"></div>
+      <div class="inkblot" aria-hidden="true"></div>
+
+      <header>
+        <div class="toprow">
+          <div class="tag">DOSAR: 30 • CAPITOLUL III • IAȘI</div>
+          <div class="stamp">CONFIDENȚIAL</div>
+        </div>
+        <h1>Capitolul III — Pădurea și Zidurile</h1>
+        <p class="subtitle">
+          Unele locuri par liniștite… până când îți dai seama că te pot face să te rătăcești.
+        </p>
+      </header>
+
+      <div class="content">
+        <div class="note">
+          „În cazurile adevărate, harta nu e pe hârtie. E în amintire.”<br>
+          Următoarea oprire e un loc în care drumul se strânge, pădurea te înghite ușor,
+          iar liniștea nu e goală — e <em>plină</em>.
+          Și da… acolo am avut momentul acela în care ne credeam doi mici infractori romantici.
+        </div>
+
+        <div class="typebox">
+          <p class="label">INDICIU #3 — DOSAR DE TEREN</p>
+          <p class="big">
+            Acolo, frigul îți schimbă respirația și pașii devin mai atenți.<br>
+            Acolo, ziduri înalte îți pun aceeași întrebare: <em>„Pe unde trecem?”</em><br>
+            Acolo, iarna lasă un singur semn luminos, ca un far — îl vezi înainte să înțelegi de ce.<br>
+            Și undeva dincolo de toate… e o tăcere care nu sperie. Te așază.<br><br>
+            Nu-ți scriu numele. Îți cer să-l reconstruiești din semne.
+          </p>
+
+          <div class="divider"></div>
+
+          <p class="big">
+            Dacă ai dubii, amintește-ți: locul acesta nu te cheamă prin zgomot. Te cheamă prin pace.
+          </p>
+        </div>
+
+        <div class="typebox" id="puzzleBox">
+          <p class="label">TEST DE DEDUCȚIE (3 repere)</p>
+          <p class="big">Completează. Dacă e corect, urmele se deblochează.</p>
+
+          <div class="divider"></div>
+
+          <p class="big"><strong>1)</strong> Ce fel de loc este acesta? (un cuvânt)</p>
+          <input id="q1" type="text" placeholder="scrie aici">
+
+          <div class="divider"></div>
+
+          <p class="big"><strong>2)</strong> Care era „semnalul” iarna? (un cuvânt)</p>
+          <input id="q2" type="text" placeholder="scrie aici">
+
+          <div class="divider"></div>
+
+          <p class="big"><strong>3)</strong> Ce ne tenta să facem, deși nu era „corect”? (un verb)</p>
+          <input id="q3" type="text" placeholder="scrie aici">
+
+          <div class="divider"></div>
+
+          <button class="btn" id="btnCheck">Verifică deducția</button>
+          <p class="hint" id="puzzleHint">Hint: pădure + ziduri + pace = un loc care rămâne în minte.</p>
+        </div>
+
+        <button class="btn" id="btnReveal">Decriptează următorul pas (blocat)</button>
+        <p class="hint">Un detectiv bun își amintește. Un detectiv excelent dovedește.</p>
+
+        <div class="hidden" id="revealBox">
+          <div class="typebox">
+            <p class="label">URMA</p>
+            <p class="big" id="nextText">
+              Nu vei vedea numele locului. Îl vei recunoaște astfel:<br><br>
+              <strong>•</strong> Pădurea îți închide zgomotul orașului.<br>
+              <strong>•</strong> Zidurile îți spun „mai există o cale”.<br>
+              <strong>•</strong> Iarna, un semn pare să arate drumul înainte să ajungi acolo.<br><br>
+              <em>Du-te la intrare și privește zidurile. Apoi scanează următorul QR.</em>
+            </p>
+          </div>
+
+          <button class="btn" id="btnDone">Am ajuns. Notează ora.</button>
+          <p class="hint">După ce ai ajuns, scanezi următorul QR.</p>
+
+          <div class="divider"></div>
+
+          <a href="final.html" style="text-decoration:none;">
+            <button class="btn">Ultimul indiciu → Final</button>
+          </a>
+          <p class="hint">Dacă nu ai încă pagina finală, o facem imediat.</p>
+        </div>
+      </div>
+
+      <footer>
+        © Dosarul 30 — unele rătăciri sunt binecuvântate.
+      </footer>
+    </section>
+  </main>
+
+  <script>
+    const btnReveal = document.getElementById('btnReveal');
+    const revealBox = document.getElementById('revealBox');
+    const btnDone = document.getElementById('btnDone');
+
+    const btnCheck = document.getElementById('btnCheck');
+    const puzzleHint = document.getElementById('puzzleHint');
+
+    const q1 = document.getElementById('q1');
+    const q2 = document.getElementById('q2');
+    const q3 = document.getElementById('q3');
+
+    const normalize = (s) => (s || "")
+      .toString()
+      .trim()
+      .toLowerCase()
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+    // Răspunsuri (cum ai cerut):
+    // 1) manastire
+    // Celelalte două le poți lăsa pentru voi, sau le setezi acum dacă vrei.
+    const ok1 = ["manastire", "mănăstire"];
+    const ok2 = ["brad"];
+    const ok3 = ["sarim"];
+
+    btnReveal.disabled = true;
+
+    btnCheck.addEventListener('click', () => {
+      const a1 = normalize(q1.value);
+      const a2 = normalize(q2.value);
+      const a3 = normalize(q3.value);
+
+      const good1 = ok1.map(normalize).includes(a1);
+      const good2 = ok2.map(normalize).includes(a2);
+      const good3 = ok3.map(normalize).includes(a3);
+
+      if (good1 && good2 && good3) {
+        puzzleHint.textContent = "Deducție corectă ✓ Următorul pas poate fi decriptat.";
+        btnReveal.disabled = false;
+        btnReveal.textContent = "Decriptează următorul pas";
+        if (navigator.vibrate) navigator.vibrate([25, 20, 25]);
+        return;
+      }
+
+      let msg = "Încă nu. Un reper lipsește.";
+      if (!good1) msg = "Primul cuvânt: ce fel de loc era acolo? (un cuvânt)";
+      else if (!good2) msg = "Iarna, ce „semn” îți amintești că vedeai?";
+      else if (!good3) msg = "Ce voiam să facem cu gardurile? Un verb simplu.";
+
+      puzzleHint.textContent = msg;
+      if (navigator.vibrate) navigator.vibrate(20);
+    });
+
+    btnReveal.addEventListener('click', () => {
+      revealBox.classList.remove('hidden');
+      btnReveal.disabled = true;
+      btnReveal.textContent = "Decriptat ✓";
+      if (navigator.vibrate) navigator.vibrate([30, 20, 30]);
+    });
+
+    btnDone.addEventListener('click', () => {
+      const t = new Date().toISOString();
+      localStorage.setItem('dosar30_cap3', t);
+      btnDone.textContent = "Ora a fost notată ✓";
+      btnDone.disabled = true;
+      if (navigator.vibrate) navigator.vibrate(50);
+    });
+  </script>
+</body>
+</html>

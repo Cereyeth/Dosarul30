@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dosarul 30 | Final</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Special+Elite&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --paper:#f2e7cf;
+      --paper2:#eadbbd;
+      --ink:#241a12;
+      --muted:#5a4a3a;
+      --stamp:#7a1f1f;
+      --line:rgba(36,26,18,.18);
+      --shadow: 0 18px 40px rgba(0,0,0,.22);
+      --radius: 16px;
+
+      --serif: "IM Fell English", serif;
+      --type: "Special Elite", ui-monospace, monospace;
+    }
+    *{ box-sizing:border-box; }
+
+    body{
+      margin:0;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      color:var(--ink);
+      background:
+        radial-gradient(900px 600px at 20% 10%, rgba(90,74,58,.12), transparent 60%),
+        radial-gradient(900px 600px at 80% 30%, rgba(122,31,31,.10), transparent 55%),
+        linear-gradient(180deg, #2b221b 0%, #1f1813 60%, #15100c 100%);
+    }
+
+    .wrap{ width:100%; max-width:720px; }
+
+    .paper{
+      position:relative;
+      background:
+        radial-gradient(1200px 700px at 20% 0%, rgba(255,255,255,.35), transparent 60%),
+        radial-gradient(900px 600px at 90% 20%, rgba(90,74,58,.14), transparent 55%),
+        linear-gradient(180deg, var(--paper) 0%, var(--paper2) 100%);
+      border: 1px solid rgba(36,26,18,.25);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    .paper::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      background:
+        radial-gradient(90% 70% at 10% 20%, rgba(0,0,0,.08), transparent 55%),
+        radial-gradient(70% 60% at 90% 30%, rgba(0,0,0,.06), transparent 60%),
+        radial-gradient(80% 70% at 40% 110%, rgba(0,0,0,.07), transparent 55%);
+      mix-blend-mode:multiply;
+    }
+
+    .fold{
+      position:absolute;
+      left:50%;
+      top:-20px;
+      width:1px;
+      height: calc(100% + 40px);
+      background: rgba(36,26,18,.10);
+      transform: translateX(-50%);
+      filter: blur(.2px);
+      opacity:.75;
+      pointer-events:none;
+    }
+
+    header{
+      padding:18px 18px 10px;
+      border-bottom: 1px dashed rgba(36,26,18,.25);
+    }
+
+    .toprow{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+
+    .tag{
+      font-family: var(--type);
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid rgba(36,26,18,.20);
+      background: rgba(255,255,255,.25);
+      padding:8px 10px;
+      border-radius: 999px;
+    }
+
+    .stamp{
+      font-family: var(--type);
+      color: var(--stamp);
+      border: 2px solid rgba(122,31,31,.65);
+      padding:8px 10px;
+      border-radius: 10px;
+      transform: rotate(-6deg);
+      letter-spacing:.6px;
+      text-transform: uppercase;
+      background: rgba(255,255,255,.15);
+      box-shadow: 0 8px 20px rgba(122,31,31,.12);
+      user-select:none;
+    }
+
+    h1{
+      margin:12px 0 6px;
+      font-family: var(--serif);
+      font-size: 30px;
+      letter-spacing:.2px;
+    }
+
+    .subtitle{
+      margin:0;
+      font-family: var(--serif);
+      font-size: 15px;
+      color: var(--muted);
+      line-height:1.55;
+    }
+
+    .content{
+      padding:16px 18px 18px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+
+    .note{
+      border-left: 4px solid rgba(36,26,18,.20);
+      padding:12px 12px;
+      background: rgba(255,255,255,.25);
+      border-radius: 12px;
+      line-height:1.75;
+      font-family: var(--serif);
+      font-size: 16px;
+    }
+
+    .typebox{
+      border: 1px solid rgba(36,26,18,.25);
+      background: rgba(255,255,255,.22);
+      border-radius: 14px;
+      padding:14px 14px;
+    }
+
+    .label{
+      font-family: var(--type);
+      font-size: 12px;
+      color: var(--muted);
+      margin:0 0 8px;
+      letter-spacing:.4px;
+      text-transform: uppercase;
+    }
+
+    .big{
+      margin:0;
+      font-family: var(--type);
+      font-size: 15px;
+      line-height:1.65;
+      color: var(--ink);
+    }
+
+    .divider{
+      height:1px;
+      background: rgba(36,26,18,.14);
+      margin:10px 0;
+    }
+
+    .btn{
+      appearance:none;
+      border: 1px solid rgba(36,26,18,.35);
+      background: linear-gradient(180deg, rgba(255,255,255,.35), rgba(255,255,255,.18));
+      color: var(--ink);
+      width:100%;
+      padding:14px 14px;
+      border-radius: 14px;
+      font-family: var(--type);
+      font-weight: 700;
+      cursor:pointer;
+      box-shadow: 0 10px 22px rgba(0,0,0,.10);
+      transition: transform .08s ease, box-shadow .08s ease;
+    }
+    .btn:active{ transform: scale(.99); box-shadow: 0 8px 18px rgba(0,0,0,.10); }
+    .btn[disabled]{ opacity:.75; cursor:default; }
+
+    .hint{
+      text-align:center;
+      font-family: var(--type);
+      font-size: 12px;
+      color: rgba(90,74,58,.9);
+      margin: 6px 0 0;
+    }
+
+    .hidden{ display:none; }
+
+    footer{
+      padding:12px 18px 16px;
+      border-top: 1px dashed rgba(36,26,18,.25);
+      font-family: var(--type);
+      font-size: 11px;
+      color: rgba(90,74,58,.95);
+      text-align:center;
+      background: rgba(255,255,255,.12);
+    }
+
+    .inkblot{
+      position:absolute;
+      width:240px; height:240px;
+      left:-100px; top:-110px;
+      background: radial-gradient(circle at 45% 45%, rgba(36,26,18,.14), transparent 62%);
+      filter: blur(.2px);
+      opacity:.9;
+      pointer-events:none;
+    }
+
+    input{
+      width:100%;
+      padding:12px;
+      border-radius:12px;
+      border:1px solid rgba(36,26,18,.25);
+      background: rgba(255,255,255,.25);
+      font-family: var(--type);
+      font-size: 14px;
+      color: var(--ink);
+      outline:none;
+    }
+    input::placeholder{ color: rgba(90,74,58,.65); }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+    }
+    @media(min-width:680px){
+      .grid{ grid-template-columns:1fr 1fr; }
+    }
+
+    .qtitle{ margin:0 0 6px; }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+    <section class="paper">
+      <div class="fold" aria-hidden="true"></div>
+      <div class="inkblot" aria-hidden="true"></div>
+
+      <header>
+        <div class="toprow">
+          <div class="tag">DOSAR: 30 • ÎNCHIDEREA CAZULUI • IAȘI</div>
+          <div class="stamp">FINAL</div>
+        </div>
+        <h1>Închiderea Dosarului</h1>
+        <p class="subtitle">
+          Ultima probă nu cere pași. Cere adevărul mic dintre voi.
+        </p>
+      </header>
+
+      <div class="content">
+        <div class="note">
+          „Unele uși nu se deschid cu chei. Se deschid cu amintiri.”<br>
+          Există un loc mic. Nici zgomot, nici liniște. Nici lumină, nici întuneric.
+          Doar <strong>totul</strong>… și <strong>voi</strong>.<br><br>
+          Dacă reconstituiți povestea, locul se arată singur.
+        </div>
+
+        <div class="typebox">
+          <p class="label">INSTRUCȚIUNI — DOSAR SIGILAT</p>
+          <p class="big">
+            Nu vei primi un nume. Nu vei primi o adresă.<br>
+            Primești <strong>10 fragmente</strong>. Scrise ca să nu fie evidente.
+            Doar voi știți răspunsurile exacte.
+          </p>
+        </div>
+
+        <div class="typebox" id="puzzleBox">
+          <p class="label">PROBA FINALĂ (10 FRAGMENTE)</p>
+
+          <div class="grid">
+            <div>
+              <p class="big qtitle"><strong>1)</strong> Unde s-a întâmplat „prima dovadă” că nu e o joacă? (1–3 cuvinte)</p>
+              <input id="q1" placeholder="scrie aici">
+            </div>
+            <div>
+              <p class="big qtitle"><strong>2)</strong> Care a fost primul drum în care am devenit echipă? (loc / oraș)</p>
+              <input id="q2" placeholder="scrie aici">
+            </div>
+            <div>
+              <p class="big qtitle"><strong>3)</strong> Ce cuvânt mic foloseam ca să spunem „vin spre tine”? (un cuvânt)</p>
+              <input id="q3" placeholder="scrie aici">
+            </div>
+            <div>
+              <p class="big qtitle"><strong>4)</strong> Care e „ritualul” nostru când vrem să ne liniștim? (1–2 cuvinte)</p>
+              <input id="q4" placeholder="scrie aici">
+            </div>
+            <div>
+              <p class="big qtitle"><strong>5)</strong> Ce lucru banal a devenit simbol între noi? (un cuvânt)</p>
+              <input id="q5" placeholder="scrie aici">
+            </div>
+            <div>
+              <p class="big qtitle"><strong>6)</strong> Care e melodia/noaptea care ne prinde instant? (1–4 cuvinte)</p>
+              <input id="q6" placeholder="scrie aici">
+            </div>
+            <div>
+              <p class="big qtitle"><strong>7)</strong> Unde se „oprește timpul” pentru noi, chiar și 10 secunde? (loc)</p>
+              <input id="q7" placeholder="scrie aici">
+            </div>
+            <div>
+              <p class="big qtitle"><strong>8)</strong> Ce ne face să râdem fără să explicăm nimănui? (un cuvânt / expresie scurtă)</p>
+              <input id="q8" placeholder="scrie aici">
+            </div>
+            <div>
+              <p class="big qtitle"><strong>9)</strong> Ce gust are „acasă” când e doar al nostru? (un cuvânt)</p>
+              <input id="q9" placeholder="scrie aici">
+            </div>
+            <div>
+              <p class="big qtitle"><strong>10)</strong> Cum îi spunem noi, în cod, momentului „gata, ești tu”? (1–2 cuvinte)</p>
+              <input id="q10" placeholder="scrie aici">
+            </div>
+          </div>
+
+          <div class="divider"></div>
+          <button class="btn" id="btnCheck">Validează reconstrucția</button>
+          <p class="hint" id="puzzleHint">Hint: adevărul nu are nevoie de martori.</p>
+        </div>
+
+        <button class="btn" id="btnReveal">Dezvăluie destinația (blocat)</button>
+        <p class="hint">Dosarul nu se deschide fără toate fragmentele.</p>
+
+        <div class="hidden" id="revealBox">
+          <div class="typebox">
+            <p class="label">VERDICT</p>
+            <p class="big">
+              <strong>Dosarul 30: rezolvat.</strong><br>
+              Nu pentru că ai ghicit. Ci pentru că ai știut.<br><br>
+              <strong>Felicitări.</strong> Ai reconstituit povestea fără să fie scrisă.
+            </p>
+
+            <div class="divider"></div>
+
+            <p class="big">
+              <strong>DESTINAȚIA FINALĂ (CRIPTA):</strong><br>
+              Un loc mic, al vostru. Unde nu e nici zgomot, nici liniște.
+              Nici lumină, nici întuneric. Doar totul… și voi.<br><br>
+              <em>Instrucțiuni (completezi tu):</em><br>
+              <span style="font-family:var(--serif); font-size:16px;">
+                — mergi la: <strong>[locul mic al vostru]</strong><br>
+                — intrarea: <strong>[stânga/dreapta]</strong> • etaj: <strong>[x]</strong> • semn: <strong>[un reper discret]</strong><br>
+                — parola (opțional): <strong>[un cuvânt]</strong>
+              </span>
+            </p>
+          </div>
+
+          <button class="btn" id="btnDone">Sunt gata. Notează ora.</button>
+          <p class="hint">Când intri, cazul se închide… cu voi.</p>
+        </div>
+      </div>
+
+      <footer>
+        © Dosarul 30 — unele mistere sunt făcute să rămână ale voastre.
+      </footer>
+    </section>
+  </main>
+
+  <script>
+    const btnCheck = document.getElementById('btnCheck');
+    const puzzleHint = document.getElementById('puzzleHint');
+    const btnReveal = document.getElementById('btnReveal');
+    const revealBox = document.getElementById('revealBox');
+    const btnDone = document.getElementById('btnDone');
+
+    const inputs = Array.from({length:10}, (_,i)=>document.getElementById(`q${i+1}`));
+
+    const normalize = (s) => (s || "")
+      .toString()
+      .trim()
+      .toLowerCase()
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // scoate diacritice
+
+    // IMPORTANT:
+    // Pune aici răspunsurile voastre reale.
+    // Poți pune mai multe variante acceptate pentru fiecare întrebare.
+    // Exemplu:
+    // 1: ["liftul", "in lift", "lift"]
+    // 2: ["brasov", "brașov"]
+    const expected = [
+      ["__completeaza__"], // Q1
+      ["__completeaza__"], // Q2
+      ["__completeaza__"], // Q3
+      ["__completeaza__"], // Q4
+      ["__completeaza__"], // Q5
+      ["__completeaza__"], // Q6
+      ["__completeaza__"], // Q7
+      ["__completeaza__"], // Q8
+      ["__completeaza__"], // Q9
+      ["__completeaza__"], // Q10
+    ].map(list => list.map(normalize));
+
+    btnReveal.disabled = true;
+    btnReveal.textContent = "Dezvăluie destinația (blocat)";
+
+    btnCheck.addEventListener('click', () => {
+      let good = 0;
+
+      for(let i=0; i<10; i++){
+        const ans = normalize(inputs[i].value);
+        const okList = expected[i];
+
+        // dacă ai lăsat "__completeaza__", nu va trece (intenționat)
+        const isPlaceholder = okList.includes(normalize("__completeaza__"));
+        const match = !isPlaceholder && okList.includes(ans);
+
+        if(match) good++;
+      }
+
+      if(good === 10){
+        puzzleHint.textContent = "Reconstrucție validă ✓ Dosarul poate fi deschis.";
+        btnReveal.disabled = false;
+        btnReveal.textContent = "Dezvăluie destinația";
+        if (navigator.vibrate) navigator.vibrate([25, 20, 25, 20, 25]);
+      } else {
+        puzzleHint.textContent = `Încă nu. Fragmente corecte: ${good}/10. Mai caută în amintiri.`;
+        if (navigator.vibrate) navigator.vibrate(20);
+      }
+    });
+
+    btnReveal.addEventListener('click', () => {
+      revealBox.classList.remove('hidden');
+      btnReveal.disabled = true;
+      btnReveal.textContent = "Dezvăluit ✓";
+      if (navigator.vibrate) navigator.vibrate([30, 20, 30]);
+    });
+
+    btnDone.addEventListener('click', () => {
+      const t = new Date().toISOString();
+      localStorage.setItem('dosar30_final', t);
+      btnDone.textContent = "Ora a fost notată ✓";
+      btnDone.disabled = true;
+      if (navigator.vibrate) navigator.vibrate(60);
+    });
+  </script>
+</body>
+</html>
